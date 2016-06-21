@@ -67,8 +67,8 @@ void draw(){
     stuffy[i] = stuffy[i-1];
   }
   for (int i = 0; i<alength; i++){
-    fill(255, 0, 0/*, 255-255*i/alength*/);
-    ellipse(stuffx[i], stuffy[i], 20/((i+2)/2), 20/((i+2)/2) );
+    fill(255, 0, 0, 255-255*i/alength);
+    ellipse(stuffx[i], stuffy[i], 20/((i+1)/1.5), 20/((i+1)/1.5) );
   }
   x+=xvelocity;
   y+=yvelocity;
