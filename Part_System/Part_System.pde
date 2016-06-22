@@ -51,13 +51,19 @@ class parts {;
 int n = 1;
 //Test if the number of systems needs to be changed
 int past = 0;
+//Text
+boolean text = true;
 void draw () {
   //Animation background
   background(0);
-  //The text on the top left
-  fill(255);
-  textSize(20);
-  text("Click to add more fountians!", 50, 50);
+  //Make the text dissappear if you added a fountian
+  if (text){
+    //The text on the top left
+    fill(255);
+    textSize(20);
+    text("Click to add more fountians!", 0, 25);
+    text("Keep in mind it takes ~4 seconds to fully load in", 0, 50);
+  }
   //Goes through the array and update each one
   for (int i = 0; i<all.size(); i++){
     parts part = all.get (i);
@@ -66,7 +72,7 @@ void draw () {
   //If new elements have been added
   if (past!=systemsx.length){
     //Add in all the elements required
-    if (n<=200){
+    if (n<=250){
       all.add( new parts(systemsx[systemsx.length-1], systemsy[systemsy.length-1]) );
       n++;
     }else{
@@ -77,6 +83,10 @@ void draw () {
   }
 };
 void mouseReleased() {
+  //Makes text disappear
+  text = false;
+  //Make sure we get the full amount of parts
+  n=1;
   //Adds the current mouse position to the system array location
   float sysx=mouseX;
   float sysy=mouseY;
