@@ -2,6 +2,7 @@ ArrayList <fire> all;
 void setup() {
   size(500, 500);
   noCursor();
+  smooth();
   noStroke();
   all = new ArrayList <fire> ();
 };
@@ -26,8 +27,8 @@ class fire {
     x += xv;
     y += yv;
     fill(r, g, 0, 70);
-    r-=r/40;
-    g-=g/40;
+    r-=r/10;
+    g-=g/10;
     ellipse(x, y, 10, 10);
     if ( x<0 || x>width || y<0 || y>height){
       x=mouseX;
@@ -40,25 +41,37 @@ class fire {
     }
   };
 };
+float r;
+float g;
+float b;
 int n = 1;
 int past = 0;
 void draw() {
   background(0);
-  for (int i = 40; i>0; i--){
-    fill(255, 255, 255, 10);
-    ellipse(mouseX, mouseY, i, i);
+  for (int i = 50; i>0; i-=1){
+    fill(255, 255, 255, random(1, 3));
+    ellipse(mouseX, mouseY, 3*i, 3*i);
   }
-  all.add(new fire(mouseX, mouseY));
+  fill(0);
+  textSize(100);
+  text("A light in" , 50*width/500, 100*height/500);
+  text("the dark", 50*width/500, 400*height/500);
+  if (frameCount % 1 == 0){
+    all.add(new fire(mouseX, mouseY));
+  }
+  stroke(100, 50, 0);
+  strokeWeight(10);
+  line(mouseX, mouseY, mouseX-25, mouseY+40);
+  noStroke();
   for (int i = 0; i<all.size();i++){
     fire part = all.get(i);
-    part.update();
     if (part.x > width || part.x < -10 || part.y > height || part.y < -10){
       all.remove(i);
       println(part.x);
     }
-    if (part.r == 0 && part.g == 0){
+    part.update();
+    if (part.r < 2 && part.g < 2){
       all.remove(i);
     }
   }
-  println(frameRate);
 };
