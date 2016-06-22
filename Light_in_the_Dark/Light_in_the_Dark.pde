@@ -50,7 +50,7 @@ void draw() {
   background(0);
   for (int i = 50; i>0; i-=1){
     fill(255, 255, 255, random(1, 3));
-    ellipse(mouseX, mouseY, 3*i, 3*i);
+    ellipse(mouseX, mouseY, 5*i, 5*i);
   }
   fill(0);
   textSize(100);
