@@ -17,23 +17,31 @@ class work {
   float g = random(150, 255);
   float b = random(150, 255);
   float angle = random(0,360);
-  float xv = random(5, -5);
-  float yv = random(5, -5);
-  float v = 2;
-  float m = sqrt( pow(xv, 2) + pow(yv, 2) );
+  float xv = random(-5, 5);
+  float yv = random(-5, 5);
+  float v = 5;
+  float m = 0;
+  boolean up = true;
+  boolean norm = true;
   
-  xv = xv/m;
   void update() {
+    if (norm){
+      xv = random(-5, 5);
+      println(xv);
+      yv = random(-5, 5);
+      m = sqrt( pow(xv, 2) + pow(yv, 2) );
+      xv = v*xv/m;
+      yv = v*yv/m;
+      norm = false;
+    }
     fill(r, g, b);
     ellipse(x, y, 10, 10);
-    if (sy-y < 100){
+    if (sy-y < 200 && up == true){
       y-=3;
     } else {
-      pushMatrix();
-      translate(x, y);
-      rotate( angle );
-      x+=5;
-      popMatrix();
+      up = false;
+      x+=xv;
+      y+=yv;
       r-=10;
       b-=10;
       g-=10;
@@ -53,7 +61,7 @@ void draw () {
   }
 }
 void mouseReleased() {
-  for (int i = 0; i<100; i++) {
+  for (int i = 0; i<10; i++) {
     all.add (new work (mouseX, mouseY) );
   }
 }
