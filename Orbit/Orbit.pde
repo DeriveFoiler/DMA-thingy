@@ -13,8 +13,8 @@ class orbiter {
   float b = random(100,255);
   float c = random(100,255);
   //Define position and velocity
-  float pxv = random(10);
-  float pyv = random(10);
+  float pxv = random(-10,10);
+  float pyv = random(-10,10);
   float x=width/2, y=height/2, v=1, xv, yv, k=0;
   //Create arrays for trail
   int alength=10;
