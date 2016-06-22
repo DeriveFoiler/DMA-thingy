@@ -30,7 +30,7 @@ float c = random(1);
 void draw() {
   background(0);
   //Create and animate the eyes
-  eye((width-50)*a+50, (height-50)*b+50, 100*c+20);
-  eye((width-50)*b+50, (height-50)*c+50, 100*a+20);
-  eye((width-50)*c+50, (height-50)*a+50, 100*b+20);
+  eye((width-50)*a+50, (height-50)*b+50, 90*c+30);
+  eye((width-50)*b+50, (height-50)*c+50, 90*a+30);
+  eye((width-50)*c+50, (height-50)*a+50, 90*b+30);
 };
