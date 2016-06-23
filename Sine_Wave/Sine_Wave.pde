@@ -28,11 +28,17 @@ void draw () {
   //The point
   strokeWeight(15);
   point( width/2+100*cos(millis()/speed), height/2+100*sin(millis()/speed) );
-  //The wave
+  //THE WAVE
   noStroke();
+  //Assign the first element
   stuffy[0] =height/2+ 100*sin(millis() / speed);
+  //Draw in the wave
   for (int i = 0; i<width/20; i++){
-    fill(0, 255-255*20*i/width, 255-255*20*i/width);
+    if (i==0){
+      fill(255, 0, 0);
+    }else{
+      fill(0, 255-255*20*i/width, 255-255*20*i/width);
+    }
     ellipse(20*i + 10, stuffy[i], 20,20);
   }
   //Move everything over on the array
@@ -42,7 +48,7 @@ void draw () {
   //Text at top left
   textSize(25);
   fill(255);
-  text("SPEED: ~" + str(2*PI*speed/1000) + " seconds/wave", 3, 24); 
+  text("SPEED: ~" + str(1/(2*PI*speed/1000)) + " waves/second", 3, 24); 
   //The line for the slider
   strokeWeight(3);
   stroke(255);
@@ -55,8 +61,8 @@ void draw () {
   //Test if within range
   if (mousePressed && mouseX>rectx-20 && mouseX<rectx+20 && mouseY>recty-20 && mouseY<recty+20 && mouseX>450 && mouseX<width-30){
     rectx = mouseX;
-    //Map distance the slider moved to speed
-    speed = 200 + 200*(rectx - (420+width)/2)/(width - 30 - (420+width)/2);
+    //Map from distance the slider moved to speed
+    speed = 200 + 200*((420+width)/2 - rectx)/(width - 30 - (420+width)/2);
   }
   noFill();
 }

@@ -36,7 +36,11 @@ void draw () {
   stuffy[0] =height/2+ 100*sin(millis() / speed);
   //Draw in the wave
   for (int i = 0; i<width/20; i++){
-    fill(0, 255-255*20*i/width, 255-255*20*i/width);
+    if (i==0){
+      fill(255, 0, 0);
+    } else {
+      fill(0, 255-255*20*i/width, 255-255*20*i/width);
+    }
     ellipse(20*i + 10, stuffy[i], 20,20);
   }
   //Move everything over on the array
