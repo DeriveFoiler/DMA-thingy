@@ -1,7 +1,16 @@
+//Declare background image
+PImage back;
+PImage img;
+PImage mask;
 //Declare array type for my class
 ArrayList <fire> all;
 void setup() {
   size(500, 500);
+  back = loadImage("thing.jpg");
+  mask = loadImage("test.jpg");
+  img = loadImage("black.png");
+  img.mask(mask);
+  imageMode(CENTER);
   noCursor();
   smooth();
   noStroke();
@@ -41,15 +50,23 @@ float g;
 float b;
 void draw() {
   background(0);
+  //The background image
+  fill(255);
+  image(back, width/2, height/2);
+  image(img, mouseX, mouseY);
+  //The torch's flickering aura
   for (int i = 50; i>0; i-=1){
     fill(255, 255, 255, random(1, 3));
     ellipse(mouseX, mouseY, 5*i, 5*i);
   }
-  //The hover over text
+  //The hover-over text
   fill(0);
-  textSize(100);
-  text("A light in" , 50*width/500, 100*height/500);
-  text("the dark", 50*width/500, 400*height/500);
+  textSize(70);
+  textMode(CENTER);
+  text("A Light", width/2 - 245/2, height/4);
+  text("in the", width/2 - 195/2, height/2);
+  textSize(120);
+  text("Dark", width/2 - (120/100)*220/2 - 30, height *7/8);
   //Continue adding new particles
   if (frameCount % 1 == 0){
     all.add(new fire(mouseX, mouseY));
