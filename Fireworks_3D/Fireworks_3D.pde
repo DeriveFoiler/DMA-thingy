@@ -38,7 +38,7 @@ class work {
     sphere(10);
     translate(-x, -y, -z);
     if (sy-y < 200 && up == true){
-      y-=3;
+      y-=7;
     } else {
       up = false;
       x+=xv;
