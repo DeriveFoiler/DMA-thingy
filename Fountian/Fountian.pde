@@ -26,7 +26,7 @@ class parts {;
   //Location and initial velocities
   float x=rx,y=ry,z=rz, yv = -4;
   float xv = 2 + random(-1,1);
-  float zv = random(-0.5,0.5);
+  float zv = random(0, 5);
   //Gravity
   float ya = 0.1;
   void update() {
@@ -34,13 +34,13 @@ class parts {;
     x += xv;
     y += yv;
     z += zv;
-    fill(a, a, 255, 50);
+    fill(0, a, 255, 30);
     pushMatrix();
     translate(x, y, z);
     sphere(7);
     popMatrix();
     //Reset all variables if out of range
-    if (y>height || y<0 || x>width || x<0){
+    if (y<0 || x>width || x<0){
       x=rx;
       y=ry;
       z=rz;
@@ -59,7 +59,7 @@ int past = 0;
 boolean text = true;
 void draw () {
   //The light
-  pointLight(255, 255, 255, width/2, height/2, 300);
+  //pointLight(255, 255, 255, width/2, height/2, 300);
   //Animation background
   background(0);
   //Make the text dissappear if you added a fountian
@@ -68,25 +68,21 @@ void draw () {
     fill(255);
     textSize(20);
     text("Click to add more fountians!", 0, 25);
-    text("Keep in mind it takes ~4 seconds to fully load in", 0, 50);
   }
   //Goes through the array and update each one
   for (int i = 0; i<all.size(); i++){
     parts part = all.get (i);
-    part.update();
-  }
-  //If new elements have been added
-  if (past!=systemsx.length){
-    //Add in all the elements required
-    if (n<=150){
-      all.add( new parts(systemsx[systemsx.length-1], systemsy[systemsy.length-1], 0) );
-      n++;
-    }else{
-      //And set the number of systems again
-      past = systemsx.length;
-      n=1;
+    if (part.y>height){
+      all.remove(i);
+    } else {
+      part.update();
     }
   }
+  //Countinue to add new parts to system
+  for (int i = 0; i<systemsx.length;i++){
+    all.add( new parts(systemsx[i], systemsy[i], 0) );
+  }
+  
   println(frameRate);
 };
 void mouseReleased() {

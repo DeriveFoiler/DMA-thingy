@@ -10,11 +10,13 @@ void setup() {
   //create some filler for the array
   stuffy = new float [width/20];
   for (int i = 0; i<width/20; i++){
-    stuffy[i] = -30;
+    stuffy[i] = height/2;
   }
   //Call rectx after width is defined
   rectx = (430+width-30)/2;
 }
+//Accleration for wave element
+float a;
 void draw () {
   background(0);
   //The white circle
@@ -36,19 +38,21 @@ void draw () {
   for (int i = 0; i<width/20; i++){
     if (i==0){
       fill(255, 0, 0);
-    }else{
+    } else {
       fill(0, 255-255*20*i/width, 255-255*20*i/width);
     }
     ellipse(20*i + 10, stuffy[i], 20,20);
   }
   //Move everything over on the array
   for (int i = stuffy.length-1;i>0; i--){
-    stuffy[i] = stuffy[i-1];
+    //Remember to dampen with a!
+    a = (stuffy[i-1] - stuffy[i])/5;
+    stuffy[i] += a;
   }
   //Text at top left
   textSize(25);
   fill(255);
-  text("SPEED: ~" + str(1/(2*PI*speed/1000)) + " waves/second", 3, 24); 
+  text("SPEED: ~" + str(1.0/(2*PI*speed/1000)) + " waves/second", 3, 24); 
   //The line for the slider
   strokeWeight(3);
   stroke(255);

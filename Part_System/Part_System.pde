@@ -20,31 +20,26 @@ class parts {;
     ry=sysy;
   };
   //Color variables
-  float a = random(100, 255);
   float b = random(100, 255);
-  float c = random(100, 255);
   //Location and initial velocities
-  float x=rx,y=ry, yv = -4;
+  float x;
+  float y;
+  float yv = -4;
   float xv = random(-1,1);
   //Gravity
   float ya = 0.1;
+  boolean startup = true;
   void update() {
+    if (startup){
+      x = rx;
+      y = ry;
+      startup = false;
+    }
     yv += ya;
     x += xv;
     y+= yv;
-    fill(a,b,c,70);
+    fill(0,b,255,70);
     ellipse(x, y, 10, 10);
-    //Reset all variables if out of range
-    if (y>height || y<0 || x>width || x<0){
-      x=rx;
-      y=ry;
-      xv = random(-1, 1);
-      yv = -4;
-      ya = 0.1;
-      a = random(100, 255);
-      b = random(100, 255);
-      c = random(100, 255);
-    }//End if
   };//End update
 };//End class
 //Counter of all particles
@@ -62,25 +57,21 @@ void draw () {
     fill(255);
     textSize(20);
     text("Click to add more fountians!", 0, 25);
-    text("Keep in mind it takes ~4 seconds to fully load in", 0, 50);
   }
-  //Goes through the array and update each one
+  //Goes through the array and removes or update each one
   for (int i = 0; i<all.size(); i++){
     parts part = all.get (i);
-    part.update();
-  }
-  //If new elements have been added
-  if (past!=systemsx.length){
-    //Add in all the elements required
-    if (n<=250){
-      all.add( new parts(systemsx[systemsx.length-1], systemsy[systemsy.length-1]) );
-      n++;
+    if (part.y>height){
+      all.remove(i);
     }else{
-      //And set the number of systems again
-      past = systemsx.length;
-      n=1;
+      part.update();
     }
   }
+  //If new elements have been added
+  for (int i = 0; i<systemsx.length; i++){
+    all.add( new parts(systemsx[i], systemsy[i]) );
+  }
+  println(frameRate);
 };
 void mouseReleased() {
   //Makes text disappear
