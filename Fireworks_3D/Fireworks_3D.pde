@@ -5,14 +5,15 @@ void setup() {
   all = new ArrayList <work> ();
 }
 class work {
-  float x, y, z;
+  float x, y, z, h;
   float sx, sy;
-  work (float startx, float starty){
+  work (float startx, float starty, float tall){
     sx = startx;
     sy = starty;
     x = startx;
     y = starty;
     z = 0;
+    h = tall;
   }
   float r = random(150, 255);
   float g = random(150, 255);
@@ -37,7 +38,7 @@ class work {
     translate(x, y, z);
     sphere(10);
     translate(-x, -y, -z);
-    if (sy-y < 200 && up == true){
+    if (sy-y < h && up == true){
       y-=7;
     } else {
       up = false;
@@ -66,7 +67,8 @@ void draw () {
   text(frameRate, 0, 25);
 }
 void mouseReleased() {
+  float h = random(150, 300);
   for (int i = 0; i<40; i++) {
-    all.add (new work (mouseX, mouseY) );
+    all.add (new work (mouseX, mouseY, h) );
   }
 }
