@@ -34,7 +34,7 @@ class parts {;
     x += xv;
     y += yv;
     z += zv;
-    fill(a, a, 255, 30);
+    fill(0, a, 255, 30);
     pushMatrix();
     translate(x, y, z);
     sphere(7);
