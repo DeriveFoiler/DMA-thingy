@@ -10,15 +10,14 @@ void setup() {
 };
 class fire {
   //system position
-  float rx, ry;
+  float x;
+  float y;
   fire(float sysx, float sysy){
-    rx = sysx;
-    ry = sysy;
+    x = sysx;
+    y = sysy;
   }
-  //particle positions
-  float x = rx, y = ry;
   //particle velocities
-  float yv = 0, ya = -0.1, xv = random(-5,5);
+  float yv = 0, ya = -0.1, xv = random(-1,1);
   //Color variables
   float r = random(100, 255);
   float g = random(0,100);
@@ -34,16 +33,6 @@ class fire {
     g-=g/10;
     //Create ellipse
     ellipse(x, y, 10, 10);
-    //reset particle if off screen
-    if ( x<0 || x>width || y<0 || y>height){
-      x=mouseX;
-      y=mouseY;
-      yv=0;
-      ya=-0.1;
-      xv=random(-1,1);
-      r=random(100,255);
-      g=random(0,100);
-    }
   };
 };
 //Global variables for color
@@ -74,14 +63,10 @@ void draw() {
   for (int i = 0; i<all.size();i++){
     fire part = all.get(i);
     //Remove if these are met
-    if (part.x > width || part.x < -10 || part.y > height || part.y < -10){
+    if (part.x > width || part.x < 0 || part.y > height || part.y < 0){
       all.remove(i);
     }
     //Update it
     part.update();
-    //Remove if these are met
-    if (part.r < 2 && part.g < 2){
-      all.remove(i);
-    }
   }
 };
