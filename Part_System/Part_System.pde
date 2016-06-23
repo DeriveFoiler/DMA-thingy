@@ -20,9 +20,7 @@ class parts {;
     ry=sysy;
   };
   //Color variables
-  float a = random(100, 255);
   float b = random(100, 255);
-  float c = random(100, 255);
   //Location and initial velocities
   float x;
   float y;
@@ -40,19 +38,8 @@ class parts {;
     yv += ya;
     x += xv;
     y+= yv;
-    fill(a,b,c,70);
+    fill(0,b,255,70);
     ellipse(x, y, 10, 10);
-    //Reset all variables if out of range
-    //if (y>height || y<0 || x>width || x<0){
-    //  x=rx;
-    //  y=ry;
-    //  xv = random(-1, 1);
-    //  yv = -4;
-    //  ya = 0.1;
-    //  a = random(100, 255);
-    //  b = random(100, 255);
-    //  c = random(100, 255);
-    //}//End if
   };//End update
 };//End class
 //Counter of all particles
