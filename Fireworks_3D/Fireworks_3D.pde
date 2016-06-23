@@ -53,7 +53,6 @@ class work {
 int i=0;
 void draw () {
   background(0);
-  pointLight(255, 255, 255, width/2, height/2, 400);
   fill(255);
   for (int i = 0; i<all.size(); i++){
     work part = all.get (i);

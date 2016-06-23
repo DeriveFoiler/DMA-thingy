@@ -84,6 +84,7 @@ void draw () {
   for (int i = 0; i<systemsx.length; i++){
     all.add( new parts(systemsx[i], systemsy[i]) );
   }
+  println(frameRate);
 };
 void mouseReleased() {
   //Makes text disappear
