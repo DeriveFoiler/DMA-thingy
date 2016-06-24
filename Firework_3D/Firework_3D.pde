@@ -2,6 +2,7 @@
 ArrayList <work> all;
 void setup() {
   size(500,500,P3D);
+  noCursor();
   noStroke();
   //Here's that array
   all = new ArrayList <work> ();
@@ -88,7 +89,7 @@ void draw () {
   //Spawn a firework every 30 frames
   if (frameCount % 30 == 0){
     //Randomize how high and where it starts
-    h = random(height*5/8, height*7/8);
+    h = random(height/2, height);
     PVector place = new PVector(random(0, width), height, random(-width/2, width/2));
     //Add 40 particles for each firework to the array to be updated
     for (int i = 0; i<40; i++) {
